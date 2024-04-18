@@ -53,11 +53,16 @@ public class Responder
         Iterator<String> it = words.iterator();
         while(it.hasNext()) {
             String word = it.next();
-            String response = responseMap.get(word);
-            if(response != null) {
-                return response;
+            for (Map.Entry<String, String> entry : responseMap.entrySet()) {
+                String[] keywords = entry.getKey().split(",\\s*");
+                for (String keyword : keywords) {
+                    if (word.equals(keyword.trim())) {
+                        return entry.getValue();
+                    }
+                }
             }
         }
+        
         // If we get here, none of the words from the input line was recognized.
         // In this case we pick one of our default responses (what we say when
         // we cannot think of anything else to say...)
