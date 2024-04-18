@@ -50,24 +50,23 @@ public class Responder
      */
     public String generateResponse(HashSet<String> words)
     {
-        Iterator<String> it = words.iterator();
-        while(it.hasNext()) {
-            String word = it.next();
+        for (String inputWord : words) {
             for (Map.Entry<String, String> entry : responseMap.entrySet()) {
                 String[] keywords = entry.getKey().split(",\\s*");
                 for (String keyword : keywords) {
-                    if (word.equals(keyword.trim())) {
+                    if (inputWord.equals(keyword.trim())) {
                         return entry.getValue();
                     }
                 }
             }
         }
-        
+    
         // If we get here, none of the words from the input line was recognized.
         // In this case we pick one of our default responses (what we say when
         // we cannot think of anything else to say...)
         return pickDefaultResponse();
     }
+
     
     /**
      * Modify the method to read responses from a file instead of hardcoding them.
