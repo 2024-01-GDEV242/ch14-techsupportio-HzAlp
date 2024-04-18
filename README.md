@@ -19,9 +19,10 @@ This project implements a simple technical support system that communicates via 
 
 ## Changes Made
 
-- Implemented reading responses from a file instead of hardcoding them ("responses.txt").
-- Updated the "generateResponse" method to handle cases where the user enters a whole sentence containing a keyword, ensuring correct responses are provided.
 - Modified the "fillDefaultResponses" method to support multiline entries, where a blank line marks the end of an entry and lines of text get appended if they appear on the next consecutive line.
+- Implemented reading responses from a file instead of hardcoding them ("responses.txt").
+- Updated the generateResponse method to handle cases where the user enters a whole sentence containing keywords, ensuring correct responses are provided for multiple keywords.
+
 
 
 ## License
