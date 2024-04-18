@@ -16,6 +16,8 @@ import java.util.*;
  * 
  * @author David J. Barnes and Michael Kölling.
  * @version 2016.02.29
+ *          2024.04.18 modificated by Alper Hiz G00307512
+ *          
  */
 public class Responder
 {
@@ -26,7 +28,7 @@ public class Responder
     // The name of the file containing the default responses.
     private static final String FILE_OF_DEFAULT_RESPONSES = "default.txt";
     private Random randomGenerator;
-    
+    // The name of the file containing then responses.
     private static final String FILE_OF_RESPONSES = "responses.txt";
 
 
