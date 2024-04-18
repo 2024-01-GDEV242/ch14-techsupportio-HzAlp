@@ -124,10 +124,21 @@ public class Responder
         Charset charset = Charset.forName("US-ASCII");
         Path path = Paths.get(FILE_OF_DEFAULT_RESPONSES);
         try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
-            String response = reader.readLine();
-            while(response != null) {
-                defaultResponses.add(response);
-                response = reader.readLine();
+            String line;
+            StringBuilder entryBuilder = new StringBuilder();
+            while ((line = reader.readLine()) != null) {
+                if (line.trim().isEmpty()) {
+                    if (entryBuilder.length() > 0) {
+                        defaultResponses.add(entryBuilder.toString());
+                        entryBuilder.setLength(0); // Clear the entry builder
+                    }
+                } else {
+                    entryBuilder.append(line).append("\n"); // Append the line to the entry
+                }
+            }
+            // Add the last entry if it's not empty
+            if (entryBuilder.length() > 0) {
+                defaultResponses.add(entryBuilder.toString());
             }
         }
         catch(FileNotFoundException e) {
@@ -138,7 +149,7 @@ public class Responder
                                FILE_OF_DEFAULT_RESPONSES);
         }
         // Make sure we have at least one response.
-        if(defaultResponses.size() == 0) {
+        if (defaultResponses.size() == 0) {
             defaultResponses.add("Could you elaborate on that?");
         }
     }
